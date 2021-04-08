@@ -11,15 +11,29 @@ $(document).ready(function() {
     // (chi vogliamo), (l'evento) (f. vuota)
     nextBtn.click(function(){
        nextPrevSlide('next');
-    })
+    });
     // prev
     prevBtn.click(function(){
         nextPrevSlide('prev');
-    })
+    });
 
+
+    // Navigazione con keyboord (navigazione con i tasti)
+    $(document).keydown(function(e){  // e = event
+        console.log(e);
+        console.log(e.keyCode);
+
+        // decisione
+        if(e.keyCode == 37){
+            nextPrevSlide('prev');
+        }else if(e.keyCode == 39){
+            nextPrevSlide('next')
+        }
+
+    });
 
 // Chiusara del $document
-})  
+}) ; 
 
 /***************************************************
  * FUNZIONI Utili
@@ -34,7 +48,7 @@ $(document).ready(function() {
 function nextPrevSlide(direction) {
     console.log(direction);
     //                   prendi per specificità sia il papà che la img, e poi la classe 
-    var activeImage = $('images img.active');
+    var activeImage = $('.images img.active');
     //                   prendi per specificità 
     var activeCircle = $('.nav i.active');
 
@@ -45,7 +59,7 @@ function nextPrevSlide(direction) {
 
     // next 
     if(direction === 'next') {
-        if(activeImage.hasClass('last')) {    // se fa questo
+        if(activeImage.hasClass('last')) {    // se fa questo, ha anche questo
             $('.images img.first').addClass('active');
             $('.nav i.first').addClass('active');
         } else {
